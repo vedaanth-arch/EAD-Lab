@@ -1,16 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+  <title>Calculator</title>
 </head>
-<body>
-    <form>
-        <div><textarea disabled></textarea></div>
-        <div><button>1</button><button>2</button><button>3</button><button>+</button></div>
-        <div><button>4</button><button>5</button><button>6</button><button>-</div></div>
-        <div><button>7</button><button>8</button><button>9</button><button>*</button></div>
-    </form>
+<body style="text-align:center; margin-top:50px;">
+  <h2>Calculator</h2>
+  <input type="text" id="result" style="width:160px; padding:5px;" readonly><br><br>
+
+  <div>
+    <button onclick="clearResult()">C</button>
+    <button onclick="appendValue('/')">/</button>
+    <button onclick="appendValue('*')">*</button>
+    <button onclick="deleteLast()">DEL</button><br>
+
+    <button onclick="appendValue('7')">7</button>
+    <button onclick="appendValue('8')">8</button>
+    <button onclick="appendValue('9')">9</button>
+    <button onclick="appendValue('-')">-</button><br>
+
+    <button onclick="appendValue('4')">4</button>
+    <button onclick="appendValue('5')">5</button>
+    <button onclick="appendValue('6')">6</button>
+    <button onclick="appendValue('+')">+</button><br>
+
+    <button onclick="appendValue('1')">1</button>
+    <button onclick="appendValue('2')">2</button>
+    <button onclick="appendValue('3')">3</button>
+    <button onclick="calculate()">=</button><br>
+
+    <button onclick="appendValue('0')">0</button>
+    <button onclick="appendValue('.')">.</button>
+  </div>
+
+  <script>
+    function appendValue(val) {
+      document.getElementById("result").value += val;
+    }
+    function clearResult() {
+      document.getElementById("result").value = "";
+    }
+    function deleteLast() {
+      let res = document.getElementById("result").value;
+      document.getElementById("result").value = res.slice(0, -1);
+    }
+    function calculate() {
+      let res = document.getElementById("result").value;
+      document.getElementById("result").value = eval(res);  // evaluates expression
+    }
+  </script>
 </body>
 </html>
